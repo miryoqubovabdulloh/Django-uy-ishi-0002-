@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moshina</title>
+</head>
+<body>
+    <h1>Moshina qo'shish</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="nomi" placeholder="Moshina nomini kiriting" value="{{carr}}">
+        <button type="submit">Saqlash</button>
+    </form>
+
+    <h1>Moshina ro'yxati:</h1>
+    <ul>
+        {% for s in car %}
+            <li> 
+                {{ s.nomi }} 
+                <a href="{% url 'moshina_delete' id=s.id %}">
+                    <button type="submit">Ochirish</button>
+                </a> |
+                <a href="{% url 'moshina_edit' id=s.id %}">
+                    <button type="submit">Tahrirlash</button>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

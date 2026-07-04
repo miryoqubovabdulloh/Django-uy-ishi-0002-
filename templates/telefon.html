@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telefonlar boshqaruvi</title>
+</head>
+<body>
+
+    <h1>Telefon qo'shish:</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="nomi" placeholder="Telefon nomini kiriting" value="{{tel}}" >
+        <button type="submit">Saqlash</button>
+    </form>
+
+    <h1>Telefonlar ro'yxati:</h1>
+    <ul>
+        {% for e in phone %}
+            <li> 
+                {{ e.nomi }} 
+                <a href="{% url 'telefon_delete' id=e.id %}"><button>Ochirish</button></a> |
+                <a href="{% url 'telefon_edit' id=e.id %}"><button>Tahrirlash</button></a> 
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
